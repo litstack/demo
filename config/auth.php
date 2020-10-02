@@ -36,6 +36,10 @@ return [
     */
 
     'guards' => [
+        'lit' => [
+            'driver' => 'session',
+            'provider' => 'lit_users',
+        ],
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -66,6 +70,10 @@ return [
     */
 
     'providers' => [
+        'lit_users' => [
+            'driver' => 'eloquent',
+            'model' => Lit\Models\User::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -93,6 +101,12 @@ return [
     */
 
     'passwords' => [
+        'lit_users' => [
+            'provider' => 'lit_users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',

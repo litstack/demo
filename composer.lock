@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4e8b94e2d01c40befd4b8ae704df36e",
+    "content-hash": "e1283e7f28f17677f6d0300573443ac1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2209,16 +2209,16 @@
         },
         {
             "name": "litstack/litstack",
-            "version": "dev-master",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/litstack/litstack.git",
-                "reference": "8f46bf55d3136475a8755c041ae4311d091093d7"
+                "reference": "d6f261cbe7a8971d2df92777b20f9a6ed818e05a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/litstack/litstack/zipball/8f46bf55d3136475a8755c041ae4311d091093d7",
-                "reference": "8f46bf55d3136475a8755c041ae4311d091093d7",
+                "url": "https://api.github.com/repos/litstack/litstack/zipball/d6f261cbe7a8971d2df92777b20f9a6ed818e05a",
+                "reference": "d6f261cbe7a8971d2df92777b20f9a6ed818e05a",
                 "shasum": ""
             },
             "require": {
@@ -2277,9 +2277,9 @@
             "description": "Laravel Content-Administration",
             "support": {
                 "issues": "https://github.com/litstack/litstack/issues",
-                "source": "https://github.com/litstack/litstack/tree/v3.0.0"
+                "source": "https://github.com/litstack/litstack/tree/v3.0.1"
             },
-            "time": "2020-09-30T20:18:02+00:00"
+            "time": "2020-10-03T11:46:14+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -9235,9 +9235,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "litstack/litstack": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

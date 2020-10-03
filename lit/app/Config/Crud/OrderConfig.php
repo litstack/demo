@@ -5,6 +5,7 @@ namespace Lit\Config\Crud;
 use App\Models\Booking;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Ignite\Crud\Config\CrudConfig;
 use Ignite\Crud\CrudIndex;
 use Ignite\Crud\CrudShow;
@@ -113,10 +114,27 @@ class OrderConfig extends CrudConfig
     {
         $page->group(function ($page) {
             $page->card(function ($form) {
-                $form->input('amount')->type('number')->append('€');
-            });
-            $page->card(function ($form) {
-                $form->relation('user')->use(CustomerConfig::class);
+                $form->input('amount')
+                    ->type('number')
+                    ->append('€')
+                    ->creationRules('required')
+                    ->rules('min:0');
+                $form->select('user_id')
+                    ->title('Customer')
+                    ->options(User::all()
+                    ->mapWithKeys(fn ($user) => [$user->id => $user->name])->toArray())
+                    ->width(1 / 2)
+                    ->creationRules('required')
+                    ->rules('int');
+                $form->select('provider')
+                    ->title('Payment Provider')
+                    ->options([
+                        'mollie' => 'Mollie',
+                        'stripe' => 'Stripe',
+                        'paypal' => 'Paypal',
+                    ])->width(1 / 2)
+                    ->creationRules('required')
+                    ->rules('string');
             });
             $page->card(function ($form) {
                 $form->relation('products')->preview(function ($preview) {

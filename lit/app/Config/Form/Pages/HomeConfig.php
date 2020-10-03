@@ -49,7 +49,10 @@ class HomeConfig extends FormConfig
         $page->group(function ($page) {
             $page->card(function ($form) {
                 $form->input('headline');
-                $form->image('header_image')->expand()->maxFiles(1);
+                $form->image('header_image')
+                    ->expand()
+                    ->maxFiles(1)
+                    ->hint('<a href="https://www.freepik.com/vectors/background">Background vector created by freepik - www.freepik.com</a>');
                 $form->wysiwyg('text');
             });
 

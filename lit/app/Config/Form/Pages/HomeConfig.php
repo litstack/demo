@@ -54,6 +54,15 @@ class HomeConfig extends FormConfig
             });
 
             $page->card(function ($form) {
+                $form->block('content')->repeatables(function ($rep) {
+                    $rep->add('text', function ($form, $preview) {
+                        $preview->col('text')->stripHtml()->maxChars(50);
+                        $form->wysiwyg('text');
+                    });
+                });
+            });
+
+            $page->card(function ($form) {
                 $form->manyRelation('products')
                     ->model(Product::class)
                     ->hint('Select the products that should be featured on the front page.');

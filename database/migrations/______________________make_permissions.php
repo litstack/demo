@@ -33,6 +33,11 @@ class MakePermissions extends Migration
 
         // Permissions to manage permissions in litstack.
         'lit-user-roles',
+
+        // Models
+        'orders',
+        'products',
+        'customers',
     ];
 
     /**

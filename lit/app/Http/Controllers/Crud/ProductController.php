@@ -5,7 +5,7 @@ namespace Lit\Http\Controllers\Crud;
 use Ignite\Crud\Controllers\CrudController;
 use Lit\Models\User;
 
-class BookingController extends CrudController
+class ProductController extends CrudController
 {
     /**
      * Authorize request for authenticated lit-user and permission operation.
@@ -18,7 +18,6 @@ class BookingController extends CrudController
      */
     public function authorize(User $user, string $operation, $id = null): bool
     {
-        // return $user->can("{$operation} bookings");
-        return true;
+        return $user->can("{$operation} products");
     }
 }

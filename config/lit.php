@@ -63,14 +63,13 @@ return [
 
         'locale' => 'en',
 
-        'translatable' => true,
+        'translatable' => false,
 
         /**
          * The languages in which your litstack application should be displayed.
          */
         'locales' => [
             'en',
-            'de',
         ],
 
         'fallback_locale' => 'en',

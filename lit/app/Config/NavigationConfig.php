@@ -4,6 +4,9 @@ namespace Lit\Config;
 
 use Ignite\Application\Navigation\Config;
 use Ignite\Application\Navigation\Navigation;
+use Lit\Config\Crud\CustomerConfig;
+use Lit\Config\Crud\OrderConfig;
+use Lit\Config\Crud\ProductConfig;
 
 class NavigationConfig extends Config
 {
@@ -40,7 +43,9 @@ class NavigationConfig extends Config
         $nav->section([
             $nav->title('Models'),
 
-            //
+            $nav->preset(OrderConfig::class, ['icon' => fa('money-bill-wave')]),
+            $nav->preset(ProductConfig::class, ['icon' => fa('box-open')]),
+            $nav->preset(CustomerConfig::class, ['icon' => fa('users')]),
         ]);
     }
 }

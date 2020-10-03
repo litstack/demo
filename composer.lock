@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1283e7f28f17677f6d0300573443ac1",
+    "content-hash": "c4e8b94e2d01c40befd4b8ae704df36e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2209,7 +2209,7 @@
         },
         {
             "name": "litstack/litstack",
-            "version": "v3.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/litstack/litstack.git",
@@ -3713,16 +3713,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "8.9.1",
+            "version": "8.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "fca3f6ca7b847d389ffe4fedeec14a0c64588122"
+                "reference": "101bb63d411db177037ef71b55c9f325c6149efd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/fca3f6ca7b847d389ffe4fedeec14a0c64588122",
-                "reference": "fca3f6ca7b847d389ffe4fedeec14a0c64588122",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/101bb63d411db177037ef71b55c9f325c6149efd",
+                "reference": "101bb63d411db177037ef71b55c9f325c6149efd",
                 "shasum": ""
             },
             "require": {
@@ -3801,7 +3801,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/8.9.1"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/8.9.3"
             },
             "funding": [
                 {
@@ -3813,7 +3813,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-01T22:58:43+00:00"
+            "time": "2020-10-03T00:03:18+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -9235,7 +9235,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "litstack/litstack": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

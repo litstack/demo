@@ -66,4 +66,80 @@ class ProfileSettingsConfig extends CrudConfig
         // security
         $this->security($page);
     }
+
+    /**
+     * Build settings form.
+     *
+     * @param  CrudShow $page
+     * @return void
+     */
+    public function settings(CrudShow $page)
+    {
+        $page->info(ucwords(__lit('base.general')))->width(4);
+        $page->card(function ($form) {
+            $form->input('first_name')
+                ->width(6)
+                ->title(ucwords(__lit('base.first_name')));
+
+            $form->input('last_name')
+                ->width(6)
+                ->title(ucwords(__lit('base.last_name')));
+
+            $form->modal('change_email')
+                ->title('E-Mail')
+                ->variant('primary')
+                ->preview('{email}')
+                ->name('Change E-Mail')
+                ->confirmWithPassword()
+                ->form(function ($modal) {
+                    $modal->input('email')
+                        ->width(12)
+                        ->rules('required', function ($attribute, $value, $fail) {
+                            $fail("Whooop's this is just a demo.");
+                        })
+                        ->title('E-Mail');
+                })->width(6);
+
+            $form->input('username')
+                ->width(6)
+                ->title(ucwords(__lit('base.username')));
+        })->width(8)->class('mb-5');
+    }
+
+    /**
+     * User security.
+     *
+     * @param  CrudShow $page
+     * @return void
+     */
+    public function security($page)
+    {
+        $page->info(ucwords(__lit('base.security')))->width(4);
+
+        $page->card(function ($form) {
+            $form->modal('change_password')
+                ->title('Password')
+                ->variant('primary')
+                ->name(fa('user-shield').' '.__lit('lit.profile.change_password'))
+                ->form(function ($modal) {
+                    $modal->password('old_password')
+                        ->title('Old Password')
+                        ->confirm()
+                        ->rules(function ($attribute, $value, $fail) {
+                            $fail("Whooop's this is just a demo.");
+                        });
+
+                    $modal->password('password')
+                        ->title('New Password')
+                        ->rules('required', 'min:5')
+                        ->minScore(0);
+
+                    $modal->password('password_confirmation')
+                        ->rules('required', 'same:password')
+                        ->dontStore()
+                        ->title('New Password')
+                        ->noScore();
+                });
+        })->width(8);
+    }
 }

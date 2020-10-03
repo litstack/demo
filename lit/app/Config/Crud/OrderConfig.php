@@ -118,9 +118,7 @@ class OrderConfig extends CrudConfig
                     ->type('number')
                     ->append('€')
                     ->creationRules('required')
-                    ->rules('min:0')
-                    ->readOnly()
-                    ->hint('The amount cannot be changed');
+                    ->rules('min:0');
                 $form->select('user_id')
                     ->title('Customer')
                     ->options(User::all()
@@ -134,6 +132,15 @@ class OrderConfig extends CrudConfig
                         'mollie' => 'Mollie',
                         'stripe' => 'Stripe',
                         'paypal' => 'Paypal',
+                    ])->width(1 / 2)
+                    ->creationRules('required')
+                    ->rules('string');
+                $form->select('state')
+                    ->title('State')
+                    ->options([
+                        'pending'  => 'Pending',
+                        'success'  => 'Success',
+                        'canceled' => 'Canceled',
                     ])->width(1 / 2)
                     ->creationRules('required')
                     ->rules('string');

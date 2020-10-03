@@ -113,6 +113,12 @@ class OrderConfig extends CrudConfig
     {
         $page->group(function ($page) {
             $page->card(function ($form) {
+                $form->input('amount')->type('number')->append('€');
+            });
+            $page->card(function ($form) {
+                $form->relation('user')->use(CustomerConfig::class);
+            });
+            $page->card(function ($form) {
                 $form->relation('products')->preview(function ($preview) {
                     $preview->col('Title')->value('{title}');
                 })->withPivotAttributes(function (Order $order, Product $product) {

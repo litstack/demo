@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Lit\Models\User;
 
 class DemoInstallCommand extends Command
 {
@@ -28,6 +29,16 @@ class DemoInstallCommand extends Command
     public function handle()
     {
         $this->call('migrate:fresh', ['--seed' => true]);
-        $this->call('lit:install');
+        $user = User::create([
+            'first_name' => 'Admin',
+            'last_name'  => '',
+            'username'   => '',
+            'email'      => 'demo@admin.com',
+            'locale'     => 'en',
+        ]);
+        $user->password = bcrypt('secret');
+        $user->save();
+
+        $user->assignRole('admin');
     }
 }

@@ -22,7 +22,7 @@ class OrderAmountAreaChartConfig extends AreaChartConfig
      */
     public function title(): string
     {
-        return 'Order Amount';
+        return 'Amount';
     }
 
     /**

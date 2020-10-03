@@ -59,7 +59,11 @@ class CustomerConfig extends CrudConfig
     {
         $page->table(function ($table) {
             $table->col('Name')->value('{name}')->sortBy('name');
+            $table->money('paid_amount', 'EUR', 'de_DE')->label('Paid Amount');
         })
+            ->query(function ($query) {
+                $query->withPaidAmount();
+            })
             ->search('name', 'email')
             ->sortBy([
                 'id.desc' => __lit('lit.sort_new_to_old'),

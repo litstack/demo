@@ -29,7 +29,9 @@ class OrderFactory extends Factory
      * @var array
      */
     protected $state = [
-        'pending', 'success', 'canceled',
+        'success', 'success', 'success', 'success', 'success', 'success',
+        'pending', 'pending',
+        'canceled',
     ];
 
     /**

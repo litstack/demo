@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -49,5 +51,20 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Select "paid_amount".
+     *
+     * @param  Builder $query
+     * @return void
+     */
+    public function scopeWithPaidAmount($query)
+    {
+        $query->withCount([
+            'orders AS paid_amount' => function ($query) {
+                $query->select(DB::raw('SUM(amount) as paidsum'))->where('state', 'success');
+            },
+        ]);
     }
 }

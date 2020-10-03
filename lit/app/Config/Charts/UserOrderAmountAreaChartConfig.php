@@ -51,6 +51,6 @@ class UserOrderAmountAreaChartConfig extends AreaChartConfig
      */
     public function value($query)
     {
-        return $this->sum($query, 'amount');
+        return $this->sum($query->where('state', 'success'), 'amount');
     }
 }

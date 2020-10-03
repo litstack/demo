@@ -22,7 +22,7 @@ class OrderCountNumberChartConfig extends NumberChartConfig
      */
     public function title(): string
     {
-        return 'Orders';
+        return 'Total Orders';
     }
 
     /**

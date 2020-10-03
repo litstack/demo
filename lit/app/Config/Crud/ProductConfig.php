@@ -80,7 +80,8 @@ class ProductConfig extends CrudConfig
     {
         $page->group(function ($page) {
             $page->card(function ($form) {
-                $form->input('title');
+                $form->input('title')->width(8)->creationRules('required');
+                $form->input('price')->type('number')->append('€')->width(4)->creationRules('required');
                 $form->wysiwyg('description');
             });
 

@@ -118,7 +118,9 @@ class OrderConfig extends CrudConfig
                     ->type('number')
                     ->append('€')
                     ->creationRules('required')
-                    ->rules('min:0');
+                    ->rules('min:0')
+                    ->readOnly()
+                    ->hint('The amount cannot be changed');
                 $form->select('user_id')
                     ->title('Customer')
                     ->options(User::all()
@@ -151,7 +153,6 @@ class OrderConfig extends CrudConfig
                     ->title('Ordered At')
                     ->formatted('lll')
                     ->onlyDate(false)
-                    ->readOnly()
                     ->hint('When the order was created.');
             });
         })->width(4);

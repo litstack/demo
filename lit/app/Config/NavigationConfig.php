@@ -7,6 +7,7 @@ use Ignite\Application\Navigation\Navigation;
 use Lit\Config\Crud\CustomerConfig;
 use Lit\Config\Crud\OrderConfig;
 use Lit\Config\Crud\ProductConfig;
+use Lit\Config\Form\Pages\HomeConfig;
 
 class NavigationConfig extends Config
 {
@@ -46,6 +47,12 @@ class NavigationConfig extends Config
             $nav->preset(OrderConfig::class, ['icon' => fa('money-bill-wave')]),
             $nav->preset(ProductConfig::class, ['icon' => fa('box-open')]),
             $nav->preset(CustomerConfig::class, ['icon' => fa('users')]),
+        ]);
+
+        $nav->section([
+            $nav->title('Pages'),
+
+            $nav->preset(HomeConfig::class, ['icon' => fa('home')]),
         ]);
     }
 }

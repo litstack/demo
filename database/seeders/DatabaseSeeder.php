@@ -7,6 +7,8 @@ use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
+use Lit\Config\Form\Pages\HomeConfig;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,5 +35,15 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        Artisan::call('dump:load');
+
+        $properties = ['title' => null, 'alt' => null];
+
+        $home = HomeConfig::load();
+        $home->addMedia(storage_path('dump/home/header_image.jpg'))
+            ->preservingOriginal()
+            ->withCustomProperties($properties)
+            ->toMediaCollection('header_image');
     }
 }

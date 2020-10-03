@@ -113,11 +113,6 @@ class OrderConfig extends CrudConfig
     {
         $page->group(function ($page) {
             $page->card(function ($form) {
-                $form->input('title');
-                $form->wysiwyg('description');
-            });
-
-            $page->card(function ($form) {
                 $form->relation('products')->preview(function ($preview) {
                     $preview->col('Title')->value('{title}');
                 })->withPivotAttributes(function (Order $order, Product $product) {

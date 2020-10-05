@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 use Lit\Config\Form\Pages\HomeConfig;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -45,5 +46,10 @@ class DatabaseSeeder extends Seeder
             ->preservingOriginal()
             ->withCustomProperties($properties)
             ->toMediaCollection('header_image');
+
+        $adminRole = Role::where('name', 'admin')->where('guard_name', 'fjord')->first();
+
+        $adminRole->revokePermissionTo('update lit-role-permissions');
+        $adminRole->revokePermissionTo('delete lit-users');
     }
 }

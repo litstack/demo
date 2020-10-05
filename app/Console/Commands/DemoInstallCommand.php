@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Lit\Models\User;
 
 class DemoInstallCommand extends Command
@@ -28,6 +29,9 @@ class DemoInstallCommand extends Command
      */
     public function handle()
     {
+        File::cleanDirectory(storage_path('app/public'));
+        $this->line('Cleaned storage.');
+
         $this->call('migrate:fresh', ['--seed' => true]);
         $user = User::create([
             'first_name' => 'Admin',

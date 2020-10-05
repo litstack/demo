@@ -2252,16 +2252,16 @@
         },
         {
             "name": "litstack/litstack",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/litstack/litstack.git",
-                "reference": "d6f261cbe7a8971d2df92777b20f9a6ed818e05a"
+                "reference": "e5567bfa76a4b99d6614c4f616b377112f7e6ab8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/litstack/litstack/zipball/d6f261cbe7a8971d2df92777b20f9a6ed818e05a",
-                "reference": "d6f261cbe7a8971d2df92777b20f9a6ed818e05a",
+                "url": "https://api.github.com/repos/litstack/litstack/zipball/e5567bfa76a4b99d6614c4f616b377112f7e6ab8",
+                "reference": "e5567bfa76a4b99d6614c4f616b377112f7e6ab8",
                 "shasum": ""
             },
             "require": {
@@ -2320,9 +2320,9 @@
             "description": "Laravel Content-Administration",
             "support": {
                 "issues": "https://github.com/litstack/litstack/issues",
-                "source": "https://github.com/litstack/litstack/tree/v3.0.1"
+                "source": "https://github.com/litstack/litstack/tree/v3.0.2"
             },
-            "time": "2020-10-03T11:46:14+00:00"
+            "time": "2020-10-05T11:16:59+00:00"
         },
         {
             "name": "livewire/livewire",

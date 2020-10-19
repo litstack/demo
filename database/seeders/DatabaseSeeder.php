@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             ->withCustomProperties($properties)
             ->toMediaCollection('header_image');
 
-        $adminRole = Role::where('name', 'admin')->where('guard_name', 'fjord')->first();
+        $adminRole = Role::where('name', 'admin')->where('guard_name', 'lit')->first();
 
         $adminRole->revokePermissionTo('update lit-role-permissions');
         $adminRole->revokePermissionTo('delete lit-users');

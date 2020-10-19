@@ -102,7 +102,10 @@ class ProfileSettingsConfig extends CrudConfig
 
             $form->input('username')
                 ->width(6)
-                ->title(ucwords(__lit('base.username')));
+                ->title(ucwords(__lit('base.username')))
+                ->rules('required', function ($attribute, $value, $fail) {
+                    $fail("Whooop's this is just a demo.");
+                });
         })->width(8)->class('mb-5');
     }
 

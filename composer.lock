@@ -2251,17 +2251,59 @@
             "time": "2020-09-21T18:10:53+00:00"
         },
         {
-            "name": "litstack/litstack",
-            "version": "v3.0.2",
+            "name": "litstack/lang",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/litstack/litstack.git",
-                "reference": "e5567bfa76a4b99d6614c4f616b377112f7e6ab8"
+                "url": "https://github.com/litstack/lang.git",
+                "reference": "ff3f3ad096bcdec953eb6395222fbe8145ac3f03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/litstack/litstack/zipball/e5567bfa76a4b99d6614c4f616b377112f7e6ab8",
-                "reference": "e5567bfa76a4b99d6614c4f616b377112f7e6ab8",
+                "url": "https://api.github.com/repos/litstack/lang/zipball/ff3f3ad096bcdec953eb6395222fbe8145ac3f03",
+                "reference": "ff3f3ad096bcdec953eb6395222fbe8145ac3f03",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/console": "^7.0|^8.0",
+                "illuminate/container": "^7.0|^8.0",
+                "illuminate/events": "^7.0|^8.0",
+                "illuminate/filesystem": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "script/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cbl",
+                    "email": "lennart.carbe@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/litstack/lang/issues",
+                "source": "https://github.com/litstack/lang/tree/v3.0.6"
+            },
+            "time": "2020-11-29T14:44:19+00:00"
+        },
+        {
+            "name": "litstack/litstack",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/litstack/litstack.git",
+                "reference": "fe6bca2ed03db37d40a3868aab592e3381a87856"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/litstack/litstack/zipball/fe6bca2ed03db37d40a3868aab592e3381a87856",
+                "reference": "fe6bca2ed03db37d40a3868aab592e3381a87856",
                 "shasum": ""
             },
             "require": {
@@ -2269,16 +2311,17 @@
                 "cviebrock/eloquent-sluggable": "^7.0|^8.0",
                 "erusev/parsedown-extra": "^0.8",
                 "friendsofphp/php-cs-fixer": "^2.0",
+                "litstack/lang": "^3.0.4",
                 "livewire/livewire": "^1.0|^2.0",
-                "php": ">=7.4",
-                "spatie/laravel-medialibrary": "^8.0",
+                "php": "^7.4|^8.0",
+                "spatie/laravel-medialibrary": "^8.0|^9.0",
                 "spatie/laravel-permission": "^2.0|^3.0"
             },
             "require-dev": {
                 "facade/ignition": "~2.0",
                 "laravel/dusk": "^6.1",
                 "laravel/legacy-factories": "^1.0.4",
-                "mockery/mockery": "^1.3",
+                "mockery/mockery": "^1.4",
                 "orchestra/testbench": "^5.2|^6.0",
                 "orchestra/testbench-dusk": "^5.2|^6.0",
                 "phpunit/phpunit": "^8.0|^9.0"
@@ -2320,9 +2363,9 @@
             "description": "Laravel Content-Administration",
             "support": {
                 "issues": "https://github.com/litstack/litstack/issues",
-                "source": "https://github.com/litstack/litstack/tree/v3.0.2"
+                "source": "https://github.com/litstack/litstack/tree/v3.3.0"
             },
-            "time": "2020-10-05T11:16:59+00:00"
+            "time": "2021-01-28T22:52:20+00:00"
         },
         {
             "name": "livewire/livewire",

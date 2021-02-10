@@ -60,7 +60,7 @@ class NavigationConfig extends Config
             $nav->title('Docs'),
 
             $nav->group([
-                'title' => 'Fields',
+                'title' => 'Fields <span class="badge badge-success">new</span>',
                 'icon'  => fa('bars'),
             ], [
                 $nav->preset(BooleanConfig::class, ['icon' => fa('heading')]),
@@ -85,7 +85,7 @@ class NavigationConfig extends Config
         $nav->section([
             $nav->title('Models'),
 
-            $nav->preset(OrderConfig::class, ['icon' => fa('money-bill-wave')]),
+            $nav->preset(OrderConfig::class, ['icon' => fa('ticket-alt')]),
             $nav->preset(ProductConfig::class, ['icon' => fa('box-open')]),
             $nav->preset(CustomerConfig::class, ['icon' => fa('users')]),
         ]);

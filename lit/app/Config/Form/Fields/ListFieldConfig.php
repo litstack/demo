@@ -62,5 +62,23 @@ $form->list(\'menue\')
 ```
 				');
         });
+
+        $page->card(function ($form) {
+            $form->markdown('
+Apply the listing field to your model.
+
+```php
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+class Post extends Model
+{
+    protected menue(): MorphMany
+    {
+        return $this->listItems(\'menue\');
+    }
+}
+```
+				');
+        });
     }
 }

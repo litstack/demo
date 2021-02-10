@@ -162,6 +162,28 @@ class OrderConfig extends CrudConfig
                     ->onlyDate(false)
                     ->hint('When the order was created.');
             });
+
+            $page->card(function ($form) {
+                $form->modal('billing_address')
+                    ->title('Billing Addresse')
+                    ->name('Edit Address')
+                    ->preview('
+                    <div>{billing_address_first_name} {billing_address_last_name}</div>
+                    <div>{billing_address_company}</div>
+                    <div>{billing_address_street}</div>
+                    <div>{billing_address_zip} {billing_address_city}</div>
+                    <div>{billing_address_country}</div>
+                    ')
+                    ->form(function ($form) {
+                        $form->input('billing_address_first_name')->title('First Name')->width(6);
+                        $form->input('billing_address_last_name')->title('First Name')->width(6);
+                        $form->input('billing_address_company')->title('Company');
+                        $form->input('billing_address_street')->title('Street, Housenumber');
+                        $form->input('billing_address_zip')->title('Zip')->width(4);
+                        $form->input('billing_address_city')->title('City')->width(8);
+                        $form->input('billing_address_country')->title('Country');
+                    });
+            });
         })->width(4);
     }
 }

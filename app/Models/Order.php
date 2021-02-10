@@ -19,6 +19,14 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id', 'provider', 'amount', 'state',
+        'billing_address_first_name',
+        'billing_address_last_name',
+        'billing_address_company',
+        'billing_address_street',
+        'billing_address_zip',
+        'billing_address_city',
+        'billing_address_state',
+        'billing_address_country',
     ];
 
     /**

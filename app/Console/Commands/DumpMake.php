@@ -39,6 +39,7 @@ class DumpMake extends Command
         $dump->tables['lit_form_translations'] = MySQLDump::DATA;
         $dump->tables['lit_list_items'] = MySQLDump::DATA;
         $dump->tables['lit_list_item_translations'] = MySQLDump::DATA;
+        $dump->tables['opening_hours'] = MySQLDump::DATA;
         $dump->save(base_path('database/dumps/demo.sql'));
 
         $this->info('Created sql dump database/dumps/demo.sql');

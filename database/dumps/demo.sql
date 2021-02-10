@@ -1,4 +1,4 @@
--- Created at 3.10.2020 20:40 using David Grudl MySQL Dump Utility
+-- Created at 10.2.2021 16:01 using David Grudl MySQL Dump Utility
 -- MySQL Server: 5.7.29
 -- Database: demo
 
@@ -13,7 +13,10 @@ ALTER TABLE `lit_form_translations` DISABLE KEYS;
 
 INSERT INTO `lit_form_translations` (`id`, `lit_form_id`, `locale`, `value`) VALUES
 (1,	1,	'en',	'{\"headline\":\"Home\",\"header_image\":null,\"text\":\"<h2>Hello World!<\\/h2>\"}'),
-(2,	1,	'de',	'{\"headline\":\"Startseite\",\"header_image\":null,\"text\":\"<h2>Hallo Welt!<\\/h2>\"}');
+(2,	1,	'de',	'{\"headline\":\"Startseite\",\"header_image\":null,\"text\":\"<h2>Hallo Welt!<\\/h2>\"}'),
+(3,	6,	'en',	'{\"mail\":\"lennart.carbe@gmail.com\"}'),
+(4,	10,	'en',	'{\"text\":\"<p><strong>Laravel<\\/strong><span>&nbsp;<\\/span>is a<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Free_software\\\">free<\\/a>, open-source<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/PHP\\\">PHP<\\/a><span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Web_framework\\\">web framework<\\/a>, created by Taylor Otwell and intended for the development of web applications following the<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Model%E2%80%93view%E2%80%93controller\\\">model\\u2013view\\u2013controller<\\/a><span>&nbsp;<\\/span>(MVC)<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Architectural_pattern\\\">architectural pattern<\\/a><span>&nbsp;<\\/span>and based on<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Symfony\\\">Symfony<\\/a>. Some of the features of Laravel are a modular<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Application-level_package_manager\\\">packaging system<\\/a><span>&nbsp;<\\/span>with a dedicated dependency manager, different ways for accessing<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Relational_database\\\">relational databases<\\/a>, utilities that aid in<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Application_deployment\\\">application deployment<\\/a><span>&nbsp;<\\/span>and maintenance, and its orientation toward<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Syntactic_sugar\\\">syntactic sugar<\\/a>.<\\/p><p>The<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Source_code\\\">source code<\\/a><span>&nbsp;<\\/span>of Laravel is hosted on<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/GitHub\\\">GitHub<\\/a><span>&nbsp;<\\/span>and licensed under the terms of<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/MIT_License\\\">MIT License<\\/a>.<\\/p>\"}'),
+(5,	10,	'de',	'{\"text\":\"<p><strong>Laravel<\\/strong><span>&nbsp;<\\/span>ist ein<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Freie_Software\\\">freies<\\/a><span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/PHP\\\">PHP<\\/a>-<a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Webframework\\\">Webframework<\\/a>, das dem<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Model_View_Controller\\\">MVC-Muster<\\/a><span>&nbsp;<\\/span>folgt. Es wurde 2011 von Taylor Otwell initiiert.<\\/p>\"}');
 ALTER TABLE `lit_form_translations` ENABLE KEYS;
 
 
@@ -23,7 +26,22 @@ ALTER TABLE `lit_form_translations` ENABLE KEYS;
 ALTER TABLE `lit_forms` DISABLE KEYS;
 
 INSERT INTO `lit_forms` (`id`, `config_type`, `form_type`, `collection`, `form_name`, `value`, `order_column`, `created_at`, `updated_at`) VALUES
-(1,	'Lit\\Config\\Form\\Pages\\HomeConfig',	'show',	'pages',	'home',	'{\"live\":true}',	NULL,	'2020-10-03 19:49:45',	'2020-10-03 20:03:42');
+(1,	'Lit\\Config\\Form\\Pages\\HomeConfig',	'show',	'pages',	'home',	'{\"live\":true}',	NULL,	'2020-10-03 19:49:45',	'2020-10-03 20:03:42'),
+(2,	'Lit\\Config\\Form\\Fields\\ImageConfig',	'show',	'fields',	'image',	NULL,	NULL,	'2021-01-31 22:22:05',	'2021-01-31 22:22:05'),
+(3,	'Lit\\Config\\Form\\Fields\\InputConfig',	'show',	'fields',	'input',	NULL,	NULL,	'2021-01-31 22:24:05',	'2021-01-31 22:24:05'),
+(4,	'Lit\\Config\\Form\\Fields\\DatetimeConfig',	'show',	'fields',	'datetime',	NULL,	NULL,	'2021-01-31 22:27:58',	'2021-01-31 22:27:58'),
+(5,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'fields',	'list_field',	NULL,	NULL,	'2021-01-31 22:34:46',	'2021-01-31 22:34:46'),
+(6,	'Lit\\Config\\Form\\Fields\\ModalConfig',	'show',	'fields',	'modal',	'{\"billing_address_first_name\":\"Jess\",\"billing_address_last_name\":\"Klocko\",\"billing_address_street\":\"2444 Orn Walk Suite 495 West\",\"billing_address_zip\":\"78998\",\"billing_address_city\":\"New Flossietown\",\"billing_address_country\":\"Germany\"}',	NULL,	'2021-01-31 22:37:33',	'2021-02-10 15:29:17'),
+(7,	'Lit\\Config\\Form\\Fields\\RangeConfig',	'show',	'fields',	'range',	'{\"range\":5}',	NULL,	'2021-01-31 22:38:55',	'2021-01-31 22:39:11'),
+(8,	'Lit\\Config\\Form\\Fields\\RouteConfig',	'show',	'fields',	'route',	'{\"route\":\"app.imprint\"}',	NULL,	'2021-01-31 22:40:30',	'2021-01-31 22:44:05'),
+(9,	'Lit\\Config\\Form\\Fields\\ConditionsConfig',	'show',	'fields',	'conditions',	NULL,	NULL,	'2021-01-31 22:44:53',	'2021-01-31 22:44:53'),
+(10,	'Lit\\Config\\Form\\Fields\\WysiwygConfig',	'show',	'fields',	'wysiwyg',	'[]',	NULL,	'2021-01-31 22:47:24',	'2021-02-10 13:11:35'),
+(11,	'Lit\\Config\\Form\\Fields\\PasswordConfig',	'show',	'fields',	'password',	NULL,	NULL,	'2021-02-01 08:50:17',	'2021-02-01 08:50:17'),
+(12,	'Lit\\Config\\Form\\Fields\\RadioConfig',	'show',	'fields',	'radio',	NULL,	NULL,	'2021-02-01 08:52:26',	'2021-02-01 08:52:26'),
+(13,	'Lit\\Config\\Form\\Fields\\RelationConfig',	'show',	'fields',	'relation',	NULL,	NULL,	'2021-02-01 08:58:44',	'2021-02-01 08:58:44'),
+(14,	'Lit\\Config\\Form\\Fields\\BooleanConfig',	'show',	'fields',	'boolean',	NULL,	NULL,	'2021-02-10 13:09:45',	'2021-02-10 13:09:45'),
+(15,	'Lit\\Config\\Form\\Fields\\CheckboxesConfig',	'show',	'fields',	'checkboxes',	NULL,	NULL,	'2021-02-10 13:09:50',	'2021-02-10 13:09:50'),
+(16,	'Lit\\Config\\Form\\Fields\\IconConfig',	'show',	'fields',	'icon',	NULL,	NULL,	'2021-02-10 13:09:55',	'2021-02-10 13:09:55');
 ALTER TABLE `lit_forms` ENABLE KEYS;
 
 
@@ -32,6 +50,10 @@ ALTER TABLE `lit_forms` ENABLE KEYS;
 
 ALTER TABLE `lit_list_item_translations` DISABLE KEYS;
 
+INSERT INTO `lit_list_item_translations` (`id`, `lit_list_item_id`, `locale`, `value`) VALUES
+(1,	1,	'en',	'{\"title\":\"Hello\"}'),
+(2,	2,	'en',	'{\"title\":\"Foo\"}'),
+(3,	3,	'en',	'{\"title\":\"Bar\"}');
 ALTER TABLE `lit_list_item_translations` ENABLE KEYS;
 
 
@@ -40,6 +62,10 @@ ALTER TABLE `lit_list_item_translations` ENABLE KEYS;
 
 ALTER TABLE `lit_list_items` DISABLE KEYS;
 
+INSERT INTO `lit_list_items` (`id`, `model_type`, `model_id`, `parent_id`, `config_type`, `form_type`, `field_id`, `value`, `order_column`, `active`, `created_at`, `updated_at`) VALUES
+(1,	'Ignite\\Crud\\Models\\Form',	5,	0,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	0,	1,	NULL,	NULL),
+(2,	'Ignite\\Crud\\Models\\Form',	5,	1,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	1,	1,	NULL,	NULL),
+(3,	'Ignite\\Crud\\Models\\Form',	5,	1,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	0,	1,	NULL,	NULL);
 ALTER TABLE `lit_list_items` ENABLE KEYS;
 
 
@@ -50,7 +76,14 @@ ALTER TABLE `lit_relations` DISABLE KEYS;
 
 INSERT INTO `lit_relations` (`id`, `from_model_type`, `from_model_id`, `to_model_type`, `to_model_id`, `field_id`, `order_column`) VALUES
 (1,	'Ignite\\Crud\\Models\\Form',	1,	'App\\Models\\Product',	200,	'products',	0),
-(2,	'Ignite\\Crud\\Models\\Form',	1,	'App\\Models\\Product',	199,	'products',	1);
+(2,	'Ignite\\Crud\\Models\\Form',	1,	'App\\Models\\Product',	199,	'products',	1),
+(3,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	11,	'openingHours',	0),
+(4,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	12,	'openingHours',	0),
+(5,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	13,	'openingHours',	1),
+(6,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\Product',	200,	'products',	0),
+(7,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\Product',	199,	'products',	1),
+(8,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	1,	'openingHours',	0),
+(9,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	2,	'openingHours',	1);
 ALTER TABLE `lit_relations` ENABLE KEYS;
 
 
@@ -73,6 +106,17 @@ ALTER TABLE `lit_repeatables` DISABLE KEYS;
 INSERT INTO `lit_repeatables` (`id`, `model_type`, `model_id`, `config_type`, `form_type`, `field_id`, `type`, `value`, `order_column`, `created_at`, `updated_at`) VALUES
 (1,	'Ignite\\Crud\\Models\\Form',	1,	'Lit\\Config\\Form\\Pages\\HomeConfig',	'show',	'content',	'text',	'[]',	0,	NULL,	NULL);
 ALTER TABLE `lit_repeatables` ENABLE KEYS;
+
+
+
+-- --------------------------------------------------------
+
+ALTER TABLE `opening_hours` DISABLE KEYS;
+
+INSERT INTO `opening_hours` (`id`, `week_day`, `opening_at`, `closing_at`, `created_at`, `order_column`, `updated_at`) VALUES
+(1,	'monday',	'10:00:00',	'18:30:00',	'2021-02-10 16:00:03',	NULL,	'2021-02-10 16:00:03'),
+(2,	'tuesday',	'10:00:00',	'18:00:00',	'2021-02-10 16:00:15',	NULL,	'2021-02-10 16:00:15');
+ALTER TABLE `opening_hours` ENABLE KEYS;
 
 
 

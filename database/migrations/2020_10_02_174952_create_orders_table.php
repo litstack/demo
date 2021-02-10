@@ -22,6 +22,16 @@ class CreateOrdersTable extends Migration
             $table->float('amount');
             $table->string('state');
 
+            $table->string('billing_address_first_name')->nullable();
+            $table->string('billing_address_last_name')->nullable();
+            $table->string('billing_address_company')->nullable();
+            $table->string('billing_address_street')->nullable();
+            $table->string('billing_address_zip')->nullable();
+            $table->string('billing_address_state')->nullable();
+            $table->string('billing_address_city')->nullable();
+            $table->string('billing_address_country')->nullable();
+
+
             $table->timestamps();
         });
     }

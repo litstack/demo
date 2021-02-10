@@ -45,8 +45,58 @@ class ImageConfig extends FormConfig
      */
     public function show(CrudShow $page)
     {
-        $page->card(function ($form) {
-            $form->image('image')->maxFiles(1);
-        });
+        $page->group(function ($page) {
+            $page->card(function ($form) {
+                $form->image('croppable_image')
+                    ->maxFiles(1)
+                    ->crop(16 / 9);
+
+                $form->markdown('
+Single image that can be cropped.
+
+```php
+$form->image(\'croppable_image\')
+    ->maxFiles(1)
+    ->crop(16 / 9);
+```
+                ');
+            });
+
+            $page->card(function ($form) {
+                $form->image('images')
+                    ->firstBig()
+                    ->maxFiles(5);
+
+                $form->markdown('
+Single image that can be cropped.
+
+```php
+$form->image(\'images\')
+    ->firstBig()
+    ->maxFiles(5);
+```
+                ');
+            });
+        })->width(6);
+
+        $page->group(function ($page) {
+            $page->card(function ($form) {
+                $form->image('expanded_image')
+                    ->maxFiles(1)
+                    ->expand()
+                    ->hint('Header image.');
+
+                $form->markdown('
+Single image with full preview as a header image.
+
+```php
+$form->image(\'expanded_image\')
+    ->maxFiles(1)
+    ->expand()
+    ->hint(\'Header image.\');
+```
+                ');
+            });
+        })->width(6);
     }
 }

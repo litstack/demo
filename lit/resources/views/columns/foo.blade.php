@@ -1,0 +1,1 @@
+<div style="border-radius: 5px; background: #4952f2; padding: 5px; color: white;" v-html="item.title"></div>

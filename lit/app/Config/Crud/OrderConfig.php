@@ -9,6 +9,7 @@ use App\Models\User;
 use Ignite\Crud\Config\CrudConfig;
 use Ignite\Crud\CrudIndex;
 use Ignite\Crud\CrudShow;
+use Ignite\Support\Vue\InfoComponent;
 use Lit\Actions\Booking\SendMailAction;
 use Lit\Config\Charts\OrderAmountAreaChartConfig;
 use Lit\Config\Charts\OrderCountNumberChartConfig;
@@ -112,6 +113,16 @@ class OrderConfig extends CrudConfig
      */
     public function show(CrudShow $page)
     {
+        $page->headerLeft()
+            ->component(new InfoComponent('lit-info'))
+            ->prop('style', 'padding: 0;')
+            ->title('')
+            ->text('{readable_created_at}');
+
+        $page->card(function ($page) {
+            $page->component('order-payment-info');
+        });
+
         $page->group(function ($page) {
             $page->card(function ($form) {
                 $form->input('amount')

@@ -5,23 +5,13 @@ namespace Lit\Config;
 use Ignite\Application\Navigation\Config;
 use Ignite\Application\Navigation\Navigation;
 use Lit\Config\Crud\CustomerConfig;
+use Lit\Config\Crud\FormIndexTableAdvancedConfig;
+use Lit\Config\Crud\FormIndexTableConfig;
 use Lit\Config\Crud\OrderConfig;
 use Lit\Config\Crud\ProductConfig;
-use Lit\Config\Form\Fields\BooleanConfig;
-use Lit\Config\Form\Fields\CheckboxesConfig;
-use Lit\Config\Form\Fields\ConditionsConfig;
-use Lit\Config\Form\Fields\DatetimeConfig;
-use Lit\Config\Form\Fields\IconConfig;
-use Lit\Config\Form\Fields\ImageConfig;
-use Lit\Config\Form\Fields\InputConfig;
-use Lit\Config\Form\Fields\ListFieldConfig;
-use Lit\Config\Form\Fields\ModalConfig;
-use Lit\Config\Form\Fields\PasswordConfig;
-use Lit\Config\Form\Fields\RadioConfig;
-use Lit\Config\Form\Fields\RangeConfig;
-use Lit\Config\Form\Fields\RelationConfig;
-use Lit\Config\Form\Fields\RouteConfig;
-use Lit\Config\Form\Fields\WysiwygConfig;
+use Lit\Config\Form\Charts\ChartsConfig;
+use Lit\Config\Form\Form\AdvancedConfig;
+use Lit\Config\Form\Form\FieldsConfig;
 use Lit\Config\Form\Pages\HomeConfig;
 
 class NavigationConfig extends Config
@@ -57,28 +47,24 @@ class NavigationConfig extends Config
     public function main(Navigation $nav)
     {
         $nav->section([
-            $nav->title('Docs'),
+            $nav->title('Form Controls'),
 
-            $nav->group([
-                'title' => 'Fields <span class="badge badge-success">new</span>',
-                'icon'  => fa('bars'),
-            ], [
-                $nav->preset(BooleanConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(CheckboxesConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(DatetimeConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(IconConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(ImageConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(InputConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(ListFieldConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(ModalConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(PasswordConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(RadioConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(RangeConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(RelationConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(RouteConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(WysiwygConfig::class, ['icon' => fa('heading')]),
-                $nav->preset(ConditionsConfig::class, ['icon' => fa('heading')]),
+            $nav->preset(FieldsConfig::class, ['icon' => fa('edit')]),
+            $nav->preset(AdvancedConfig::class, ['icon' => fa('plus')]),
+            $nav->entry('Relations', [
+                'icon' => fa('link'),
+                'link' => lit()->url('form/relations/1'),
             ]),
+            $nav->group([
+                'title' => 'Index Table',
+                'icon'  => fa('table'),
+            ], [
+                $nav->preset(FormIndexTableConfig::class, ['icon' => fa('columns')]),
+                $nav->preset(FormIndexTableAdvancedConfig::class, ['icon' => fa('columns')]),
+            ]),
+
+            $nav->title('Charts'),
+            $nav->preset(ChartsConfig::class, ['icon' => fa('chart-line')]),
 
         ]);
 

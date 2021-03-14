@@ -1,4 +1,4 @@
--- Created at 10.2.2021 16:01 using David Grudl MySQL Dump Utility
+-- Created at 14.3.2021 15:43 using David Grudl MySQL Dump Utility
 -- MySQL Server: 5.7.29
 -- Database: demo
 
@@ -9,6 +9,17 @@ SET UNIQUE_CHECKS=0;
 SET AUTOCOMMIT=0;
 -- --------------------------------------------------------
 
+ALTER TABLE `form_relation_order` DISABLE KEYS;
+
+INSERT INTO `form_relation_order` (`form_relation_id`, `order_id`) VALUES
+('1',	'100999'),
+('1',	'100998');
+ALTER TABLE `form_relation_order` ENABLE KEYS;
+
+
+
+-- --------------------------------------------------------
+
 ALTER TABLE `lit_form_translations` DISABLE KEYS;
 
 INSERT INTO `lit_form_translations` (`id`, `lit_form_id`, `locale`, `value`) VALUES
@@ -16,7 +27,10 @@ INSERT INTO `lit_form_translations` (`id`, `lit_form_id`, `locale`, `value`) VAL
 (2,	1,	'de',	'{\"headline\":\"Startseite\",\"header_image\":null,\"text\":\"<h2>Hallo Welt!<\\/h2>\"}'),
 (3,	6,	'en',	'{\"mail\":\"lennart.carbe@gmail.com\"}'),
 (4,	10,	'en',	'{\"text\":\"<p><strong>Laravel<\\/strong><span>&nbsp;<\\/span>is a<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Free_software\\\">free<\\/a>, open-source<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/PHP\\\">PHP<\\/a><span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Web_framework\\\">web framework<\\/a>, created by Taylor Otwell and intended for the development of web applications following the<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Model%E2%80%93view%E2%80%93controller\\\">model\\u2013view\\u2013controller<\\/a><span>&nbsp;<\\/span>(MVC)<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Architectural_pattern\\\">architectural pattern<\\/a><span>&nbsp;<\\/span>and based on<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Symfony\\\">Symfony<\\/a>. Some of the features of Laravel are a modular<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Application-level_package_manager\\\">packaging system<\\/a><span>&nbsp;<\\/span>with a dedicated dependency manager, different ways for accessing<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Relational_database\\\">relational databases<\\/a>, utilities that aid in<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Application_deployment\\\">application deployment<\\/a><span>&nbsp;<\\/span>and maintenance, and its orientation toward<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Syntactic_sugar\\\">syntactic sugar<\\/a>.<\\/p><p>The<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Source_code\\\">source code<\\/a><span>&nbsp;<\\/span>of Laravel is hosted on<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/GitHub\\\">GitHub<\\/a><span>&nbsp;<\\/span>and licensed under the terms of<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/MIT_License\\\">MIT License<\\/a>.<\\/p>\"}'),
-(5,	10,	'de',	'{\"text\":\"<p><strong>Laravel<\\/strong><span>&nbsp;<\\/span>ist ein<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Freie_Software\\\">freies<\\/a><span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/PHP\\\">PHP<\\/a>-<a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Webframework\\\">Webframework<\\/a>, das dem<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Model_View_Controller\\\">MVC-Muster<\\/a><span>&nbsp;<\\/span>folgt. Es wurde 2011 von Taylor Otwell initiiert.<\\/p>\"}');
+(5,	10,	'de',	'{\"text\":\"<p><strong>Laravel<\\/strong><span>&nbsp;<\\/span>ist ein<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Freie_Software\\\">freies<\\/a><span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/PHP\\\">PHP<\\/a>-<a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Webframework\\\">Webframework<\\/a>, das dem<span>&nbsp;<\\/span><a href=\\\"https:\\/\\/de.wikipedia.org\\/wiki\\/Model_View_Controller\\\">MVC-Muster<\\/a><span>&nbsp;<\\/span>folgt. Es wurde 2011 von Taylor Otwell initiiert.<\\/p>\"}'),
+(6,	17,	'en',	'{\"translatable_title\":\"Hello World\",\"translatable_textarea\":\"Laravel is a free, open-source PHP web framework, created by Taylor Otwell and intended for the development of web applications following the model\\u2013view\\u2013controller (MVC) architectural pattern and based on Symfony. Some of the features of Laravel are a modular packaging system with a dedicated dependency manager, different ways for accessing relational databases, utilities that aid in application deployment and maintenance, and its orientation toward syntactic sugar.\",\"croppable_images\":[],\"header_image\":null}'),
+(7,	17,	'de',	'{\"translatable_title\":\"Hallo Welt\",\"translatable_textarea\":\"Laravel ist ein freies PHP-Webframework, das dem MVC-Muster folgt. Es wurde 2011 von Taylor Otwell initiiert.\",\"croppable_images\":[],\"header_image\":null}'),
+(8,	18,	'en',	'{\"phone_number\":\"555 123 45679\"}');
 ALTER TABLE `lit_form_translations` ENABLE KEYS;
 
 
@@ -41,7 +55,9 @@ INSERT INTO `lit_forms` (`id`, `config_type`, `form_type`, `collection`, `form_n
 (13,	'Lit\\Config\\Form\\Fields\\RelationConfig',	'show',	'fields',	'relation',	NULL,	NULL,	'2021-02-01 08:58:44',	'2021-02-01 08:58:44'),
 (14,	'Lit\\Config\\Form\\Fields\\BooleanConfig',	'show',	'fields',	'boolean',	NULL,	NULL,	'2021-02-10 13:09:45',	'2021-02-10 13:09:45'),
 (15,	'Lit\\Config\\Form\\Fields\\CheckboxesConfig',	'show',	'fields',	'checkboxes',	NULL,	NULL,	'2021-02-10 13:09:50',	'2021-02-10 13:09:50'),
-(16,	'Lit\\Config\\Form\\Fields\\IconConfig',	'show',	'fields',	'icon',	NULL,	NULL,	'2021-02-10 13:09:55',	'2021-02-10 13:09:55');
+(16,	'Lit\\Config\\Form\\Fields\\IconConfig',	'show',	'fields',	'icon',	NULL,	NULL,	'2021-02-10 13:09:55',	'2021-02-10 13:09:55'),
+(17,	'Lit\\Config\\Form\\Form\\FieldsConfig',	'show',	'form',	'fields',	'{\"full_name\":\"Alan Turing\",\"article_type\":\"1\",\"wysiwyg_field\":\"<h3><strong><span>PHP 8<\\/span><\\/strong><\\/h3><p>PHP 8 was released on November 26, 2020. PHP 8 is a major version and has breaking changes from previous versions.<span>&nbsp;<\\/span>New features and notable changes include:<\\/p><h4><strong><span>Just-in-time compilation<\\/span><\\/strong><\\/h4><p><a href=\\\"https:\\/\\/en.wikipedia.org\\/wiki\\/Just-in-time_compilation\\\">Just-in-time compilation<\\/a><span>&nbsp;<\\/span>is supported in PHP 8.<\\/p><p>PHP 8\'s JIT compiler can provide substantial performance improvements for some use cases. PHP developer Nikita Popov has stated that the performance improvements for most websites ...<\\/p>\",\"fruits\":[\"apple\",\"pineapple\"],\"stacked_fruits\":[\"orange\"],\"type\":\"article\",\"range_slider\":4}',	NULL,	'2021-03-14 15:27:25',	'2021-03-14 15:32:15'),
+(18,	'Lit\\Config\\Form\\Form\\AdvancedConfig',	'show',	'form',	'advanced',	'{\"credit_card\":\"4242 4242 4242 42422\",\"route\":\"app.datapolicy\"}',	NULL,	'2021-03-14 15:32:19',	'2021-03-14 15:32:38');
 ALTER TABLE `lit_forms` ENABLE KEYS;
 
 
@@ -65,7 +81,9 @@ ALTER TABLE `lit_list_items` DISABLE KEYS;
 INSERT INTO `lit_list_items` (`id`, `model_type`, `model_id`, `parent_id`, `config_type`, `form_type`, `field_id`, `value`, `order_column`, `active`, `created_at`, `updated_at`) VALUES
 (1,	'Ignite\\Crud\\Models\\Form',	5,	0,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	0,	1,	NULL,	NULL),
 (2,	'Ignite\\Crud\\Models\\Form',	5,	1,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	1,	1,	NULL,	NULL),
-(3,	'Ignite\\Crud\\Models\\Form',	5,	1,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	0,	1,	NULL,	NULL);
+(3,	'Ignite\\Crud\\Models\\Form',	5,	1,	'Lit\\Config\\Form\\Fields\\ListFieldConfig',	'show',	'menue',	'{}',	0,	1,	NULL,	NULL),
+(4,	'Ignite\\Crud\\Models\\Form',	18,	0,	'Lit\\Config\\Form\\Form\\AdvancedConfig',	'show',	'menue',	'{\"title\":\"Hello World\"}',	0,	1,	NULL,	NULL),
+(5,	'Ignite\\Crud\\Models\\Form',	18,	4,	'Lit\\Config\\Form\\Form\\AdvancedConfig',	'show',	'menue',	'{\"title\":\"Child Item\"}',	0,	1,	NULL,	NULL);
 ALTER TABLE `lit_list_items` ENABLE KEYS;
 
 
@@ -83,7 +101,12 @@ INSERT INTO `lit_relations` (`id`, `from_model_type`, `from_model_id`, `to_model
 (6,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\Product',	200,	'products',	0),
 (7,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\Product',	199,	'products',	1),
 (8,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	1,	'openingHours',	0),
-(9,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	2,	'openingHours',	1);
+(9,	'Ignite\\Crud\\Models\\Form',	13,	'App\\Models\\OpeningHour',	2,	'openingHours',	1),
+(10,	'App\\Models\\FormRelation',	1,	'App\\Models\\OpeningHour',	3,	'opening_hours',	0),
+(11,	'App\\Models\\FormRelation',	1,	'App\\Models\\OpeningHour',	4,	'opening_hours',	1),
+(12,	'App\\Models\\FormRelation',	1,	'App\\Models\\OpeningHour',	5,	'opening_hours',	2),
+(13,	'App\\Models\\FormRelation',	1,	'App\\Models\\OpeningHour',	6,	'opening_hours',	3),
+(14,	'App\\Models\\FormRelation',	1,	'App\\Models\\OpeningHour',	7,	'opening_hours',	4);
 ALTER TABLE `lit_relations` ENABLE KEYS;
 
 
@@ -104,7 +127,9 @@ ALTER TABLE `lit_repeatable_translations` ENABLE KEYS;
 ALTER TABLE `lit_repeatables` DISABLE KEYS;
 
 INSERT INTO `lit_repeatables` (`id`, `model_type`, `model_id`, `config_type`, `form_type`, `field_id`, `type`, `value`, `order_column`, `created_at`, `updated_at`) VALUES
-(1,	'Ignite\\Crud\\Models\\Form',	1,	'Lit\\Config\\Form\\Pages\\HomeConfig',	'show',	'content',	'text',	'[]',	0,	NULL,	NULL);
+(1,	'Ignite\\Crud\\Models\\Form',	1,	'Lit\\Config\\Form\\Pages\\HomeConfig',	'show',	'content',	'text',	'[]',	0,	NULL,	NULL),
+(2,	'Ignite\\Crud\\Models\\Form',	18,	'Lit\\Config\\Form\\Form\\AdvancedConfig',	'show',	'content',	'text',	'{\"text\":\"<p>Hello World<\\/p>\"}',	0,	NULL,	NULL),
+(3,	'Ignite\\Crud\\Models\\Form',	18,	'Lit\\Config\\Form\\Form\\AdvancedConfig',	'show',	'content',	'image',	NULL,	0,	NULL,	NULL);
 ALTER TABLE `lit_repeatables` ENABLE KEYS;
 
 
@@ -113,9 +138,14 @@ ALTER TABLE `lit_repeatables` ENABLE KEYS;
 
 ALTER TABLE `opening_hours` DISABLE KEYS;
 
-INSERT INTO `opening_hours` (`id`, `week_day`, `opening_at`, `closing_at`, `created_at`, `order_column`, `updated_at`) VALUES
-(1,	'monday',	'10:00:00',	'18:30:00',	'2021-02-10 16:00:03',	NULL,	'2021-02-10 16:00:03'),
-(2,	'tuesday',	'10:00:00',	'18:00:00',	'2021-02-10 16:00:15',	NULL,	'2021-02-10 16:00:15');
+INSERT INTO `opening_hours` (`id`, `week_day`, `order_column`, `opening_at`, `closing_at`, `created_at`, `updated_at`) VALUES
+(1,	'monday',	NULL,	'10:00:00',	'18:30:00',	'2021-02-10 16:00:03',	'2021-02-10 16:00:03'),
+(2,	'tuesday',	NULL,	'10:00:00',	'18:00:00',	'2021-02-10 16:00:15',	'2021-02-10 16:00:15'),
+(3,	'monday',	NULL,	'10:00:00',	'18:00:00',	'2021-03-14 15:25:46',	'2021-03-14 15:25:46'),
+(4,	'tuesday',	NULL,	'10:00:00',	'18:00:00',	'2021-03-14 15:26:14',	'2021-03-14 15:26:14'),
+(5,	'thursday',	NULL,	'10:00:00',	'18:00:00',	'2021-03-14 15:26:31',	'2021-03-14 15:26:31'),
+(6,	'friday',	NULL,	'10:00:00',	'18:00:00',	'2021-03-14 15:26:42',	'2021-03-14 15:26:42'),
+(7,	'saturday',	NULL,	'10:00:00',	'14:00:00',	'2021-03-14 15:26:56',	'2021-03-14 15:26:56');
 ALTER TABLE `opening_hours` ENABLE KEYS;
 
 

@@ -89,7 +89,7 @@ return [
 
     'assets' => [
         // Set path to the main app.js file.
-        'app_js' => null,
+        'app_js' => '/lit/js/app.js',
 
         'scripts' => [
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js',

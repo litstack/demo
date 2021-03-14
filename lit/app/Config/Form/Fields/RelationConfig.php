@@ -47,39 +47,31 @@ class RelationConfig extends FormConfig
      */
     public function show(CrudShow $page)
     {
+        //         $page->card(function ($form) {
+        //             $form->manyRelation('products')
+        //                 ->model(Product::class)
+        //                 ->preview(function ($preview) {
+        //                     $preview->col('Title')->value('{title}');
+        //                 });
+
+        //             $form->markdown('
+        // Use the `relation` field to simply link models using any type of laravel relation.
+
+        // ```php
+        // $form->manyRelation(\'products(\')
+        //     ->model(Product::class)
+        //     ->preview(function ($preview) {
+        //         // Build table columns.
+        //         $preview->col((\'Title(\')->value((\'{title}(\');
+        //     });
+        // ```
+        // ');
+        //         });
+
         $page->card(function ($form) {
-            $form->manyRelation('products')
-                ->model(Product::class)
-                ->preview(function ($preview) {
-                    $preview->col('Title')->value('{title}');
-                });
-
-            $form->markdown('
-Use the `relation` field to simply link models using any type of laravel relation.
-
-```php
-$form->manyRelation(\'products(\')
-    ->model(Product::class)
-    ->preview(function ($preview) {
-        // Build table columns.
-        $preview->col((\'Title(\')->value((\'{title}(\');
-    });
-```
-');
-        });
-
-        $page->card(function ($form) {
-            $form->manyRelation('openingHours')
-                ->model(OpeningHour::class)
+            $form->relation('opening_hours')
                 ->title('Opening Hours')
-                ->showTableHead()
-                ->deleteUnlinked()
-                ->hideRelationLink()
                 ->sortable()
-                ->names([
-                    'singular' => 'Opening Hour',
-                    'plural'   => 'Opening Hours',
-                ])
                 ->preview(function ($preview) {
                     $preview->col('Week Day')->value('{week_day}');
 
@@ -91,9 +83,19 @@ $form->manyRelation(\'products(\')
                         ->time('closing_at')
                         ->minuteInterval(15);
                 })
+                // ...
+
+                ->model(OpeningHour::class)
+                ->names([
+                    'singular' => 'Opening Hour',
+                    'plural'   => 'Opening Hours',
+                ])
+                ->showTableHead()
+                ->deleteUnlinked()
+                ->hideRelationLink()
                 ->create(function ($form) {
                     $form->select('week_day')
-                        ->title('Wochentag')
+                        ->title('Day')
                         ->options([
                             'monday'    => 'Monday',
                             'tuesday'   => 'Tuesday',
@@ -112,7 +114,8 @@ $form->manyRelation(\'products(\')
                         ->width(1 / 2);
                 });
 
-            $form->markdown('                
+            /*
+            $form->markdown('
 This advanced usecase shows how to create new relationship models direclty and edit them using inline fields.
 
 ```php
@@ -142,13 +145,13 @@ $form->manyRelation(\'openingHours\')
         $form->select(\'week_day\')
             ->title(\'Wochentag\')
             ->options([
-                \'monday\'    => \'Monday\',
-                \'tuesday\'   => \'Tuesday\',
-                \'wednesday\' => \'Wednesday\',
-                \'thursday\'  => \'Thursday\',
-                \'friday\'    => \'Friday\',
-                \'saturday\'  => \'Saturday\',
-                \'sunday\'    => \'Sunday\',
+            \'monday\'    => \'Monday\',
+            \'tuesday\'   => \'Tuesday\',
+            \'wednesday\' => \'Wednesday\',
+            \'thursday\'  => \'Thursday\',
+            \'friday\'    => \'Friday\',
+            \'saturday\'  => \'Saturday\',
+            \'sunday\'    => \'Sunday\',
             ]);
         $form->time(\'opening_at\')
             ->minuteInterval(15)
@@ -159,7 +162,9 @@ $form->manyRelation(\'openingHours\')
             ->width(1 / 2);
     });
 ```
+
             ');
+            */
         });
     }
 }

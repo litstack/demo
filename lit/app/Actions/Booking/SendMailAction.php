@@ -3,7 +3,7 @@
 namespace Lit\Actions\Booking;
 
 use Ignite\Page\Actions\ActionModal;
-use Ignite\Page\Actions\AttributeBag;
+use Ignite\Support\AttributeBag;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 
@@ -27,6 +27,11 @@ class SendMailAction
      */
     public function run(Collection $models, AttributeBag $attributes)
     {
+        if ($models->count() > 0) {
+            return response()->success('success');
+        } else {
+            return response()->danger('fail');
+        }
         foreach ($models as $model) {
             // Send Mail to model.
             // $attributes->subject

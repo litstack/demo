@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\FormIndexTable;
+use App\Models\FormRelation;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -51,5 +53,11 @@ class DatabaseSeeder extends Seeder
 
         $adminRole->revokePermissionTo('update lit-role-permissions');
         $adminRole->revokePermissionTo('delete lit-users');
+
+        FormRelation::create([
+            'user_id' => User::inRandomOrder()->first()->id,
+        ]);
+
+        FormIndexTable::factory(200)->create();
     }
 }

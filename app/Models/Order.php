@@ -30,6 +30,26 @@ class Order extends Model
     ];
 
     /**
+     * Attributes to be appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'readable_created_at',
+    ];
+
+    /**
+     * `readable_created_at` attribute getter.
+     *
+     * @return string
+     */
+    public function getReadableCreatedAtAttribute()
+    {
+        // e.g.: "5h January 2021"
+        return $this->created_at->isoFormat('Do MMMM OY');
+    }
+
+    /**
      * The user that has created the booking.
      *
      * @return BelongsTo

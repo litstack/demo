@@ -24,6 +24,10 @@ class ProfileSettingsController extends CrudController
      */
     public function authorize(User $user, string $operation): bool
     {
+        if ($operation == 'delete') {
+            return false;
+        }
+
         return $user->id == lit_user()->id;
     }
 

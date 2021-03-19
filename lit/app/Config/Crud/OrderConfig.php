@@ -92,9 +92,9 @@ class OrderConfig extends CrudConfig
                     'paypal' => 'Paypal',
                 ],
                 'State' => [
-                    'success' => 'success',
-                    'stripe'  => 'canceled',
-                    'pending' => 'pending',
+                    'success'  => 'success',
+                    'canceled' => 'canceled',
+                    'pending'  => 'pending',
                 ],
             ])
             ->action('Send Mail', SendMailAction::class)

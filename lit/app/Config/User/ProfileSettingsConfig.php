@@ -123,7 +123,7 @@ class ProfileSettingsConfig extends CrudConfig
             $form->modal('change_password')
                 ->title('Password')
                 ->variant('primary')
-                ->name(fa('user-shield').' '.__lit('lit.profile.change_password'))
+                ->name(fa('user-shield').' '.__lit('profile.change_password'))
                 ->form(function ($modal) {
                     $modal->password('old_password')
                         ->title('Old Password')

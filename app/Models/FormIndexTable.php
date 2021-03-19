@@ -13,7 +13,7 @@ class FormIndexTable extends Model implements HasMedia
 
     public $table = 'form_index_table_items';
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'active'];
 
     protected $casts = [
         'active' => 'boolean',

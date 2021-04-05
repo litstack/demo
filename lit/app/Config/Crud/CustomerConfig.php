@@ -6,6 +6,7 @@ use App\Models\User;
 use Ignite\Crud\Config\CrudConfig;
 use Ignite\Crud\CrudIndex;
 use Ignite\Crud\CrudShow;
+use Ignite\Search\Result;
 use Lit\Config\Charts\UserOrderAmountAreaChartConfig;
 use Lit\Http\Controllers\Crud\CustomerController;
 
@@ -33,8 +34,10 @@ class CustomerConfig extends CrudConfig
      */
     public function names(User $user = null)
     {
+        $singular = $user->name ?? 'Customer';
+
         return [
-            'singular' => $user->name ?? 'Customer',
+            'singular' => $singular,
             'plural'   => 'Customers',
         ];
     }
@@ -49,6 +52,14 @@ class CustomerConfig extends CrudConfig
         return 'customers';
     }
 
+    public function searchResult(Result $result, User $user)
+    {
+        $result
+            ->title($user->name)
+            ->description($user->email)
+            ->image($user->profile_image);
+    }
+
     /**
      * Build index page.
      *
@@ -58,11 +69,12 @@ class CustomerConfig extends CrudConfig
     public function index(CrudIndex $page)
     {
         $page->table(function ($table) {
+            $table->avatar()->src('{profile_image.conversion_urls.sm}')->small();
             $table->col('Name')->value('{name}')->sortBy('name');
             $table->money('paid_amount', 'EUR', 'de_DE')->label('Paid Amount');
         })
             ->query(function ($query) {
-                $query->withPaidAmount();
+                $query->withPaidAmount()->with('media');
             })
             ->search('name', 'email')
             ->sortBy([

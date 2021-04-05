@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
@@ -20,7 +21,7 @@ class OrderFactory extends Factory
      * @var array
      */
     protected $providers = [
-        'paypal', 'stripe', 'mollie',
+        'paypal', 'stripe', 'apple-pay',
     ];
 
     /**
@@ -41,12 +42,16 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $user = User::inRandomOrder()->select('id', 'created_at')->first();
+
         return [
-            'user_id'    => $this->faker->numberBetween(1, 100),
-            'provider'   => $this->faker->randomElement($this->providers),
-            'amount'     => $this->faker->numberBetween(1000, 150000) / 100,
-            'state'      => $this->faker->randomElement($this->state),
-            'created_at' => $this->faker->dateTimeBetween($startDate = '-60 days', $endDate = 'now'),
+            'user_id'        => $user->id,
+            'provider'       => $this->faker->randomElement($this->providers),
+            'shipping_price' => 4.90,
+            'subtotal'       => $subtotal = $this->faker->numberBetween(1000, 150000) / 100,
+            'amount'         => $subtotal + 4.90,
+            'state'          => $this->faker->randomElement($this->state),
+            'created_at'     => $this->faker->dateTimeBetween(startDate: $user->created_at, endDate: 'now'),
 
             // Billing address.
             'billing_address_first_name' => $this->faker->firstName,

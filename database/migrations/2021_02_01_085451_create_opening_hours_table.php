@@ -19,7 +19,8 @@ class CreateOpeningHoursTable extends Migration
 			$table->string('order_column')->nullable();
             $table->string('opening_at');
             $table->string('closing_at');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
     }
 

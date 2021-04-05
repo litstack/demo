@@ -17,7 +17,8 @@ class CreateFormRelationsTables extends Migration
             $table->id();
             $table->string('user_id');
             $table->nullableMorphs('relationable');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
 
         Schema::create('form_relation_order', function (Blueprint $table) {

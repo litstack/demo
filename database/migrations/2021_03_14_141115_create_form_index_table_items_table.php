@@ -22,7 +22,8 @@ class CreateFormIndexTableItemsTable extends Migration
             $table->boolean('active');
             $table->integer('progress');
             $table->string('user_id');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
     }
 

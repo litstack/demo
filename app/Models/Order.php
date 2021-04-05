@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -18,7 +19,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'provider', 'amount', 'state',
+        'user_id', 'provider', 'amount', 'state', 'shipping_price',
         'billing_address_first_name',
         'billing_address_last_name',
         'billing_address_company',
@@ -36,6 +37,10 @@ class Order extends Model
      */
     protected $appends = [
         'readable_created_at',
+        'readable_amount',
+        'readable_subtotal',
+        'readable_shipping_price',
+        'state_badge',
     ];
 
     /**
@@ -67,6 +72,24 @@ class Order extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    /**
+     * Unique products.
+     *
+     * @return BelongsToMany
+     */
+    public function unique_products(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Product::class)
+            ->distinct('products.id')
+            ->addSelect([
+                'quantity' => DB::table('order_product', '_p')
+                    ->select(DB::raw('COUNT(*)'))
+                    ->whereColumn('order_product.order_id', '_p.order_id')
+                    ->whereColumn('order_product.product_id', '_p.product_id'),
+            ]);
     }
 
     /**
@@ -133,5 +156,35 @@ class Order extends Model
     public function scopePending($query)
     {
         $query->whereState('pending');
+    }
+
+    public function getReadableAmountAttribute()
+    {
+        if ($this->amount) {
+            return readable_money($this->amount, 'EUR', 'de_DE');
+        }
+    }
+
+    public function getStateBadgeAttribute()
+    {
+        return match($this->state) {
+            'success'  => '<div class="badge badge-success">success</div>',
+            'canceled' => '<div class="badge badge-danger">canceled</div>',
+            'pending'  => '<div class="badge badge-info">pending</div>',
+        };
+    }
+
+    public function getReadableSubtotalAttribute()
+    {
+        if ($this->subtotal) {
+            return readable_money($this->subtotal, 'EUR', 'de_DE');
+        }
+    }
+
+    public function getReadableShippingPriceAttribute()
+    {
+        if ($this->shipping_price) {
+            return readable_money($this->shipping_price, 'EUR', 'de_DE');
+        }
     }
 }

@@ -28,7 +28,8 @@ class CreateLitListItemsTable extends Migration
             $table->unsignedInteger('order_column')->nullable();
             $table->boolean('active')->default(true);
 
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
 
         Schema::create('lit_list_item_translations', function (Blueprint $table) {

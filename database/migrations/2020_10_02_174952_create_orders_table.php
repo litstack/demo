@@ -19,7 +19,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id')->index();
 
             $table->string('provider');
+            $table->float('subtotal');
             $table->float('amount');
+            $table->float('shipping_price');
             $table->string('state');
 
             $table->string('billing_address_first_name')->nullable();
@@ -31,8 +33,8 @@ class CreateOrdersTable extends Migration
             $table->string('billing_address_city')->nullable();
             $table->string('billing_address_country')->nullable();
 
-
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
     }
 

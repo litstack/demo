@@ -23,7 +23,8 @@ class CreateLitUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->string('locale')->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
     }
 

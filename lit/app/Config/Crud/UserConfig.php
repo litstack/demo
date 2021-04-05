@@ -59,7 +59,7 @@ class UserConfig extends CrudConfig
         $page->table(function ($table) {
             $table->col('title')->value('{title}')->sortBy('title');
         })
-            ->search('title')
+            ->search('name')
             ->sortBy([
                 'id.desc' => __lit('lit.sort_new_to_old'),
                 'id.asc'  => __lit('lit.sort_old_to_new'),

@@ -6,52 +6,27 @@
             <tr>
                 <td class="col-sm pl-0 pr-2 pb-2">Subtotal</td>
                 <td class="text-secondary pb-2">
-                    {{ model.products.length }}
-                    {{ model.products.length == 1 ? "Ticket" : "Tickets" }}
+                    {{ model.products_count }}
+                    {{ model.products_count == 1 ? "Products" : "Products" }}
                 </td>
                 <td align="right" class="pb-2 lit-col-money">
                     {{ model.readable_subtotal }}
                 </td>
             </tr>
 
-            <!-- <tr class="" v-for="(discount, key) in model.discounts">
-                <td
-                    class="col-sm pl-0 pr-2"
-                    :class="key == model.discounts.length - 1 ? 'pb-2' : ''"
-                >
-                    {{ key == 0 ? "Aktionen" : "" }}
-                </td>
-                <td
-                    class="text-secondary"
-                    :class="key == model.discounts.length - 1 ? 'pb-2' : ''"
-                >
-                    {{ discount.title }}
-                </td>
-                <td
-                    align="right"
-                    class="lit-col-money"
-                    :class="key == model.discounts.length - 1 ? 'pb-2' : ''"
-                >
-                    -{{ discount.pivot.readable_credit }}
-                </td>
-            </tr> -->
-
-            <tr class="" v-if="model.voucher">
-                <td class="col-sm pl-0 pr-2 pb-2">Rabatt Code</td>
-                <td class="text-secondary pb-2">
-                    {{ model.voucher.code }}
-                </td>
+            <tr class="">
+                <td class="col-sm pl-0 pr-2 pb-2">Shipping</td>
+                <td class="text-secondary pb-2"></td>
                 <td align="right" class="pb-2 lit-col-money">
-                    -{{ model.readable_voucher_credit }}
+                    {{ model.readable_shipping_price }}
                 </td>
             </tr>
 
             <tr class="mt-5">
-                <td class="col-sm pl-0 pr-2 pb-2 pt-2">
-                    <strong>Total</strong>
-                </td>
+                <td class="col-sm pl-0 pr-2 pb-2 pt-2"></td>
                 <td></td>
                 <td align="right" class="pb-2 pt-2 lit-col-money">
+                    <strong class="mr-2">Total</strong>
                     <strong>
                         {{ model.readable_amount }}
                     </strong>
@@ -61,9 +36,13 @@
 
         <hr class="w-100" />
         <div class="d-flex justify-content-between w-100">
-            <span>Vom Kunden Bezahlt</span>
+            <span>Paid by customer</span>
             <span class="lit-col-money">
-                {{ model.readable_paid_amount }}
+                {{
+                    model.state == "successfull"
+                        ? model.readable_amount
+                        : "0,00 €"
+                }}
             </span>
         </div>
     </lit-col>

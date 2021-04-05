@@ -3,9 +3,11 @@
 namespace Lit\Config\Crud;
 
 use App\Models\Product;
+use App\Models\States\ProductState;
 use Ignite\Crud\Config\CrudConfig;
 use Ignite\Crud\CrudIndex;
 use Ignite\Crud\CrudShow;
+use Ignite\Search\Result;
 use Lit\Http\Controllers\Crud\ProductController;
 
 class ProductConfig extends CrudConfig
@@ -23,6 +25,15 @@ class ProductConfig extends CrudConfig
      * @var string
      */
     public $controller = ProductController::class;
+
+    public function searchResult(Result $result, Product $product)
+    {
+        $result
+            ->title($product->title)
+            ->description($product->description)
+            ->image($product->preview_image)
+            ->createdAt(null);
+    }
 
     /**
      * Model singular and plural name.
@@ -57,8 +68,13 @@ class ProductConfig extends CrudConfig
     public function index(CrudIndex $page)
     {
         $page->table(function ($table) {
+            $table->image()->src('{preview_image.conversion_urls.sm}')->small();
             $table->col('Title')->value('{title}')->sortBy('title');
-            $table->col('Sold')->value('{orders_count}')->sortBy('orders_count')->small()->right();
+            $table->col('State')->value('state', [
+                ProductState::ACTIVE => '<span class="badge badge-success">active</span>',
+                ProductState::DRAFT  => '<span class="badge badge-light">draft</span>',
+            ])->sortBy('state');
+            $table->money('price', 'EUR', 'de_DE');
         })
             ->search('title')
             ->query(function ($query) {
@@ -86,17 +102,31 @@ class ProductConfig extends CrudConfig
             });
 
             $page->card(function ($form) {
-                $form->relation('orders')->readOnly();
-            })->title('Product Orders');
+                $form->image('images')->maxFiles(5)->firstBig();
+            });
         })->width(8);
 
         $page->group(function ($page) {
             $page->card(function ($form) {
+                $form->select('state')->title('Productstate')->options([
+                    ProductState::ACTIVE => 'Active',
+                    ProductState::DRAFT  => 'Draft',
+                ]);
                 $form->datetime('publish_at')
                     ->title('Publish At')
                     ->onlyDate(false)
                     ->hint('From when the product will be available.');
             });
+
+            $page->card(function ($form) {
+                $form->query(function ($query) {
+                    $query
+                        ->withCount('orders')
+                        ->withRevenue()
+                        ->withCustomersCount();
+                });
+                $form->info('Insights')->text('{orders_count} units sold to {customers_count} customers for {readable_revenue} gross revenue.');
+            })->secondary();
         })->width(4);
     }
 }

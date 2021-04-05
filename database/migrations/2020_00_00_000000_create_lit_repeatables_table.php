@@ -27,7 +27,8 @@ class CreateLitRepeatablesTable extends Migration
 
             $table->unsignedInteger('order_column')->nullable();
 
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
         });
 
         Schema::create('lit_repeatable_translations', function (Blueprint $table) {

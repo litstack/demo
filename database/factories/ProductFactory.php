@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\States\ProductState;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -21,7 +22,18 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        // $this->faker->image('', word: false);
+
         return [
+            'state' => $this->faker->randomElement([
+                ProductState::ACTIVE,
+                ProductState::ACTIVE,
+                ProductState::ACTIVE,
+                ProductState::ACTIVE,
+                ProductState::ACTIVE,
+                ProductState::ACTIVE,
+                ProductState::DRAFT,
+            ]),
             'title'       => $this->faker->productName,
             'description' => $this->faker->randomHtml(2, 3),
             'price'       => $this->faker->numberBetween(100, 15000) / 100,

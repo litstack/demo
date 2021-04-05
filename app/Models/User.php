@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Ignite\Crud\Models\Traits\HasMedia as HasMediaTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Spatie\MediaLibrary\HasMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'profile_image',
+    ];
+
     /**
      * The orders created by the user.
      *
@@ -66,5 +72,10 @@ class User extends Authenticatable
                 $query->select(DB::raw('SUM(amount) as paidsum'))->where('state', 'success');
             },
         ]);
+    }
+
+    public function getProfileImageAttribute()
+    {
+        return $this->getMedia('profile_image')->first();
     }
 }

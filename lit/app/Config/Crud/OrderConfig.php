@@ -5,10 +5,10 @@ namespace Lit\Config\Crud;
 use App\Models\Booking;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Ignite\Crud\Config\CrudConfig;
 use Ignite\Crud\CrudIndex;
 use Ignite\Crud\CrudShow;
+use Ignite\Search\Result;
 use Ignite\Support\Vue\InfoComponent;
 use Lit\Actions\Booking\SendMailAction;
 use Lit\Config\Charts\OrderAmountAreaChartConfig;
@@ -55,6 +55,15 @@ class OrderConfig extends CrudConfig
         return 'orders';
     }
 
+    public function searchResult(Result $result, Order $order)
+    {
+        $result
+            ->title("Order #{$order->id}")
+            ->description($order->products()->count().' Products.')
+            ->hint("Created By {$order->user->name}")
+            ->icon(fa('shopping-cart'));
+    }
+
     /**
      * Build index page.
      *
@@ -68,18 +77,18 @@ class OrderConfig extends CrudConfig
 
         $page->table(function ($table) {
             $table->col('ID')->value('#{id}')->sortBy('id')->small();
-            $table->col('User')->value('{user.name}')->sortBy('user.name');
-            $table->money('amount', 'EUR', 'de_DE')->small();
-            $table->col('Provider')->value('provider', [
-                'mollie' => '<div class="badge text-white" style="background:#0077ff;">m</div> Mollie',
-                'stripe' => '<div class="badge text-white" style="background:#6773e5;">S</div> Stripe',
-                'paypal' => '<div class="badge text-white" style="background:#105298;">P</div> Paypal',
-            ])->sortBy('provider');
+            $table->relation('user', CustomerConfig::class)->value('{user.name}')->sortBy('user.name');
+            $table->col('Payment')->value('provider', [
+                'apple-pay' => '<span style="color: #24397c;font-size: 30px;">'.fa('fab', 'cc-apple-pay').'</span>',
+                'stripe'    => '<span style="color: #6772e5;font-size: 30px;">'.fa('fab', 'cc-stripe').'</span>',
+                'paypal'    => '<span style="color: #24397c;font-size: 30px;">'.fa('fab', 'cc-paypal').'</span>',
+            ]);
             $table->col('State')->value('state', [
                 'success'  => '<div class="badge badge-success">{state}</div>',
                 'canceled' => '<div class="badge badge-danger">{state}</div>',
                 'pending'  => '<div class="badge badge-info">{state}</div>',
             ])->sortBy('state');
+            $table->money('amount', 'EUR', 'de_DE')->small();
             $table->actions(['Send Mail' => SendMailAction::class]);
         })
             ->query(function ($query) {
@@ -98,7 +107,7 @@ class OrderConfig extends CrudConfig
                 ],
             ])
             ->action('Send Mail', SendMailAction::class)
-            ->search('user.name', 'provider')
+            ->search('user.name')
             ->sortBy([
                 'id.desc' => __lit('lit.sort_new_to_old'),
                 'id.asc'  => __lit('lit.sort_old_to_new'),
@@ -113,66 +122,37 @@ class OrderConfig extends CrudConfig
      */
     public function show(CrudShow $page)
     {
+        $page->query(function ($query) {
+            $query->with('user')->withCount('products');
+        });
         $page->headerLeft()
             ->component(new InfoComponent('lit-info'))
             ->prop('style', 'padding: 0;')
             ->title('')
             ->text('{readable_created_at}');
 
-        $page->card(function ($page) {
-            $page->component('order-payment-info');
-        });
-
         $page->group(function ($page) {
-            $page->card(function ($form) {
-                $form->input('amount')
-                    ->type('number')
-                    ->append('€')
-                    ->creationRules('required')
-                    ->rules('min:0');
-                $form->select('user_id')
-                    ->title('Customer')
-                    ->options(User::all()
-                    ->mapWithKeys(fn ($user) => [$user->id => $user->name])->toArray())
-                    ->width(1 / 2)
-                    ->creationRules('required')
-                    ->rules('int');
-                $form->select('provider')
-                    ->title('Payment Provider')
-                    ->options([
-                        'mollie' => 'Mollie',
-                        'stripe' => 'Stripe',
-                        'paypal' => 'Paypal',
-                    ])->width(1 / 2)
-                    ->creationRules('required')
-                    ->rules('string');
-                $form->select('state')
-                    ->title('State')
-                    ->options([
-                        'pending'  => 'Pending',
-                        'success'  => 'Success',
-                        'canceled' => 'Canceled',
-                    ])->width(1 / 2)
-                    ->creationRules('required')
-                    ->rules('string');
+            $page->card(function ($page) {
+                $page->component('order-payment-info');
             });
             $page->card(function ($form) {
-                $form->relation('products')->preview(function ($preview) {
+                $form->relation('unique_products')->preview(function ($preview) {
+                    $preview->image()->src('{preview_image.conversion_urls.sm}')->small();
                     $preview->col('Title')->value('{title}');
+                    $preview->col('Quantity')->value('{quantity}')->right();
                 })->withPivotAttributes(function (Order $order, Product $product) {
                     return ['price' => $product->price];
-                });
+                })->readOnly()->showTableHead();
             })->title('Ordered Products');
         })->width(8);
 
         $page->group(function ($page) {
             $page->card(function ($form) {
-                $form->datetime('created_at')
-                    ->title('Ordered At')
-                    ->formatted('lll')
-                    ->onlyDate(false)
-                    ->hint('When the order was created.');
-            });
+                $form->info()
+                    ->text('<div class="d-flex justify-content-between"><span>State:</span><span>{state_badge}</span></div>')
+                    ->text('<div class="d-flex justify-content-between"><span>Created At:</span><span>{readable_created_at}</span></div>')
+                    ->text('<div class="d-flex justify-content-between"><span>Customer:</span><a href="/admin/customers/{user.id}">{user.name}</a></div>');
+            })->secondary();
 
             $page->card(function ($form) {
                 $form->modal('billing_address')

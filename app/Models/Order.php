@@ -51,7 +51,7 @@ class Order extends Model
     public function getReadableCreatedAtAttribute()
     {
         // e.g.: "5h January 2021"
-        return $this->created_at->isoFormat('Do MMMM OY');
+        return $this->created_at?->isoFormat('Do MMMM OY');
     }
 
     /**

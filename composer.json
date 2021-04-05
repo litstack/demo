@@ -16,7 +16,7 @@
         "larabug/larabug": "^2.3",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "litstack/litstack": "^3.0",
+        "litstack/litstack": "dev-search",
         "mbezhanov/faker-provider-collection": "^2.0"
     },
     "require-dev": {

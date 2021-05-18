@@ -39,7 +39,7 @@ class FormIndexTableAdvancedConfig extends CrudConfig
     {
         return [
             'singular' => 'Table',
-            'plural'   => 'Advanced Tabel',
+            'plural'   => 'Advanced Table',
         ];
     }
 
